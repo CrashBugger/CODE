@@ -62,6 +62,10 @@ SELF_REFUTE_SOURCE_ORDER = (
     "combined_tell_me_about_first",
 )
 
+SELF_REFUTE_REPORT_SOURCE_ORDER = tuple(
+    source for source in SELF_REFUTE_SOURCE_ORDER if source != "combined_tell_me_about_first"
+)
+
 SELF_REFUTE_SOURCE_LABELS = {
     "conflict_probe": "By conflict_probe only",
     "conflict_probe_tell_me_about_first": ("By conflict_probe (tell_me_about_first only)"),
@@ -2508,7 +2512,7 @@ class AnalyzePipeline:
         conditional = summary.get("conditional")
         conditional_ratios_by_source: Dict[str, str] = {}
 
-        for source in SELF_REFUTE_SOURCE_ORDER:
+        for source in SELF_REFUTE_REPORT_SOURCE_ORDER:
             total = int(source_totals.get(source, 0))
             yes = int(source_yes.get(source, 0))
             label = SELF_REFUTE_SOURCE_LABELS[source]
@@ -2536,12 +2540,11 @@ class AnalyzePipeline:
                 "conflict_probe",
                 "conflict_probe_tell_me_about_first",
                 "combined",
-                "combined_tell_me_about_first",
             )
             fp.write(
                 "  Conditional ratios "
                 "(hop_wise_pred/conflict_probe/conflict_probe_tell_me_about_first/"
-                "combined/combined_tell_me_about_first): "
+                "combined): "
                 f"{'/'.join(conditional_ratios_by_source.get(source, 'N/A') for source in compact_order)}\n"
             )
         fp.write("\n")

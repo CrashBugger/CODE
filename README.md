@@ -222,6 +222,7 @@ python pred_analysis_tool.py analyze \
     --llm-self-refute on \
     --rewrite-why on
 ```
+> **Note:** Consistent with the paper, we report SRR using the `Combined (any source), among rewrites with hop_wise_pred assertion_of_target_new=true` metric in the generated summary file `analysis/pred_analysis.txt`.
 
 ---
 
