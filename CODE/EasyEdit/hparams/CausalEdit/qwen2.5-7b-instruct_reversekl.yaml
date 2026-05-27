@@ -1,0 +1,5 @@
+alg_name: CausalEdit
+model_name: unsloth/Qwen2.5-7B-Instruct-bnb-4bit
+teacher_use_sft: false
+student_use_sft: true
+stage3_use_forward_kl: false

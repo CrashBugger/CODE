@@ -1,0 +1,5 @@
+alg_name: CausalEdit
+model_name: unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit
+teacher_use_sft: false
+student_use_sft: true
+stage3_learning_rate: 1.1e-4
